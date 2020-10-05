@@ -27,9 +27,8 @@ public class LoginTrelloTest extends TestBase{
         Thread.sleep(10000);
         login("lyubov.yapparova@gmail.com", "holopenio11");
         Thread.sleep(10000);
-
-        Assert.assertFalse(isAvatarPresent());
-        Thread.sleep(10000);
+//        Assert.assertFalse(isAvatarPresent());
+//        Thread.sleep(10000);
         Assert.assertTrue(isLoginErrorPresent());
         Thread.sleep(10000);
 
