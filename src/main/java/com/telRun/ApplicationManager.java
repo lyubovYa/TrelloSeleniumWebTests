@@ -13,6 +13,9 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
     WebDriver wd;
+    SessionHelper session;
+    BoardHelper board;
+
 
     public void stop() {
         wd.quit();
@@ -25,6 +28,16 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.manage().window().maximize();
         wd.navigate().to("http://trello.com/");
+        session= new SessionHelper(wd);
+        board = new BoardHelper(wd);
+    }
+
+    public SessionHelper getSession() {
+        return session;
+    }
+
+    public BoardHelper getBoard() {
+        return board;
     }
 
     public void logout() {
@@ -82,11 +95,11 @@ public class ApplicationManager {
         return wd.findElements(locator).size()>0;
     }
 
-    @BeforeClass
-    public void openTrelloLoin() throws InterruptedException {
-        setUp();
-        login("lyubov.yapparova@gmail.com", "holopenio21");
-    }
+//    @BeforeClass
+//    public void openTrelloLoin() throws InterruptedException {
+//        setUp();
+//        login("lyubov.yapparova@gmail.com", "holopenio21");
+//    }
 
     public int getBoardsCount() {
         int res = wd.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size()-1;
