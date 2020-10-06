@@ -3,9 +3,12 @@ package com.telRun;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -72,7 +75,6 @@ public class TestBase {
     public void click(By locator) {
         wd.findElement(locator).click();
     }
-
     public boolean isAvatarPresent() throws InterruptedException {
         Thread.sleep(6000);
         return isElementPresent(By.xpath("//button[@data-test-id='header-member-menu-button']"));
@@ -82,4 +84,5 @@ public class TestBase {
         Thread.sleep(6000);
         return wd.findElements(locator).size()>0;
     }
+
 }
