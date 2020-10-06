@@ -9,8 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 public class CloseBoardTest extends TestBase {
     @BeforeClass
     public void openTrelloLoin() throws InterruptedException {
-        setUp();
-        login("lyubov.yapparova@gmail.com", "holopenio21");
+        app.openTrelloLoin();
     }
 
     @Test
@@ -18,7 +17,7 @@ public class CloseBoardTest extends TestBase {
         int before = getBoardsCount();
         openBoard();
         Thread.sleep(2000);
-//        clickOnShowMenu();
+        //clickOnShowMenu();
         //clickOnBackButton();
         clickOnMore();
         clickOnCloseBoard();
@@ -31,37 +30,37 @@ public class CloseBoardTest extends TestBase {
         Assert.assertEquals(before-1, after);
     }
     public int getBoardsCount() {
-        int res = wd.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size()-1;
+        int res = app.getBoardsCount();
         return res;
     }
 
-    private void returnOnHomePage() {
-        click(By.cssSelector("[data-test-id='header-home-button']"));
+    public void returnOnHomePage() {
+        app.click(By.cssSelector("[data-test-id='header-home-button']"));
     }
 
     public void confirmDeleteBoard() {
-        click(By.cssSelector(".js-confirm.full.negate"));
+        app.click(By.cssSelector(".js-confirm.full.negate"));
     }
 
     public void permanentlyDeleteBoar() {
-        click(By.cssSelector(".quiet.js-delete"));
+        app.click(By.cssSelector(".quiet.js-delete"));
     }
 
     public void confirmCloseButton() {
-        click(By.cssSelector(".js-confirm.full.negate"));
+        app.click(By.cssSelector(".js-confirm.full.negate"));
     }
 
     public void clickOnCloseBoard() {
-        click(By.cssSelector(".board-menu-navigation-item-link.js-close-board"));
+        app.click(By.cssSelector(".board-menu-navigation-item-link.js-close-board"));
     }
 
     public void clickOnMore() {
-        click(By.cssSelector(".board-menu-navigation-item-link.js-open-more"));
+        app.click(By.cssSelector(".board-menu-navigation-item-link.js-open-more"));
     }
 
     public void clickOnBackButton() throws InterruptedException {
         if (isElementPresentCustom(By.cssSelector(".board-menu-header-back-button.icon-lg.icon-back.js-pop-widget-view"))){
-            click(By.cssSelector(".board-menu-header-back-button.icon-lg.icon-back.js-pop-widget-view"));
+            app.click(By.cssSelector(".board-menu-header-back-button.icon-lg.icon-back.js-pop-widget-view"));
         }
 
 
@@ -72,19 +71,19 @@ public class CloseBoardTest extends TestBase {
 //            click(By.cssSelector(".board-header-btn.mod-show-menu.js-show-sidebar"));
 //        }
 //        if (isElementPresentCustom(By.cssSelector(".icon-sm.icon-overflow-menu-horizontal.board-header-btn-icon"))) {
-            click(By.cssSelector(".icon-sm.icon-overflow-menu-horizontal.board-header-btn-icon111"));
+            app.click(By.cssSelector(".icon-sm.icon-overflow-menu-horizontal.board-header-btn-icon111"));
 //        }
     }
     public void  openBoard() {
         ///???? how to click on one of boards
-        click(By.cssSelector(".board-tile-details.is-badged"));
+        app.click(By.cssSelector(".board-tile-details.is-badged"));
 
         // .board-header-btn-text
     }
 
     private boolean isElementPresentCustom(By by){
         try{
-            wd.findElement(by);
+            app.wd.findElement(by);
             return true;
         }catch(NoSuchElementException e){
             return false;

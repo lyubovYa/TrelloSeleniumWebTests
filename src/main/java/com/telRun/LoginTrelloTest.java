@@ -9,27 +9,27 @@ public class LoginTrelloTest extends TestBase{
     @BeforeMethod
     public void ensurePreconditions() throws InterruptedException {
         Thread.sleep(6000);
-        if(isAvatarPresent()){
-            logout();
+        if(app.isAvatarPresent()){
+            app.logout();
         }
 
     }
 
     @Test
     public void testLoginPositive() throws InterruptedException {
-        login("lyubov.yapparova@gmail.com", "holopenio21");
+        app.login("lyubov.yapparova@gmail.com", "holopenio21");
 
-        Assert.assertTrue(isAvatarPresent());
+        Assert.assertTrue(app.isAvatarPresent());
         //is user correct
     }
     @Test
     public void negativeTestLogin() throws InterruptedException {
         Thread.sleep(10000);
-        login("lyubov.yapparova@gmail.com", "holopenio11");
+        app.login("lyubov.yapparova@gmail.com", "holopenio11");
         Thread.sleep(10000);
 //        Assert.assertFalse(isAvatarPresent());
 //        Thread.sleep(10000);
-        Assert.assertTrue(isLoginErrorPresent());
+        Assert.assertTrue(app.isLoginErrorPresent());
         Thread.sleep(10000);
 
         //is user correct
