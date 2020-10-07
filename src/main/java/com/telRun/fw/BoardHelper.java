@@ -1,0 +1,79 @@
+package com.telRun.fw;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+
+public class BoardHelper extends HelperBase {
+    public BoardHelper(WebDriver wd) {
+        super(wd);
+    }
+
+    public void fiiBoardForm(String boardName, String teamViseble) throws InterruptedException {
+        typeByXPATH("//input[@data-test-id='create-board-title-input']", boardName);
+        click(By.cssSelector(".W6rMLOx8U0MrPx"));
+        click(By.cssSelector("._1uK2vQ_aMRS2NU"));
+        //if(isElementPresent())
+        //public or private
+        click(By.cssSelector("._1Lkx3EjS3wCrs7"));
+        click(By.xpath("//*[@name='" + teamViseble + "']/../.."));
+        //confirm public
+        if (isElementPresent(By.cssSelector(".X6LMWvod566P68"))) {
+            click(By.cssSelector(".X6LMWvod566P68 button"));
+        }
+    }
+
+    public int getBoardsCount() {
+        int res = wd.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size() - 1;
+        return res;
+    }
+
+    public void confirmBoardCreation() {
+        click(By.cssSelector("[data-test-id='create-board-submit-button']"));
+    }
+
+    public void confirmDeleteBoard() {
+        click(By.cssSelector(".js-confirm.full.negate"));
+    }
+
+    public void permanentlyDeleteBoar() {
+        click(By.cssSelector(".quiet.js-delete"));
+    }
+
+    public void confirmCloseButton() {
+        click(By.cssSelector(".js-confirm.full.negate"));
+    }
+
+    public void clickOnCloseBoard() {
+        click(By.cssSelector(".board-menu-navigation-item-link.js-close-board"));
+    }
+
+    public void clickOnMore() {
+        click(By.cssSelector(".board-menu-navigation-item-link.js-open-more"));
+    }
+
+    public void openBoard() {
+        ///???? how to click on one of boards
+        click(By.cssSelector(".board-tile-details.is-badged"));
+
+        // .board-header-btn-text
+    }
+
+    public void clickOnBackButton() throws InterruptedException {
+        if (isElementPresent(By.cssSelector(".board-menu-header-back-button.icon-lg.icon-back.js-pop-widget-view"))) {
+            click(By.cssSelector(".board-menu-header-back-button.icon-lg.icon-back.js-pop-widget-view"));
+        }
+
+    }
+
+    public void clickOnTheFirstBoard() {
+        click(By.xpath("//*[@class='icon-lg icon-member']/../../..//li"));
+
+    }
+
+    public void renameBoard() {
+        click(By.cssSelector(".js-rename-board"));
+        wd.findElement(By.cssSelector("js-board-name-input")).clear();
+        wd.findElement(By.cssSelector("js-board-name-input")).sendKeys("rrrr" + Keys.ENTER);
+    }
+}

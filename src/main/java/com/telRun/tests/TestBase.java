@@ -1,6 +1,7 @@
-package com.telRun;
+package com.telRun.tests;
 
 
+import com.telRun.fw.ApplicationManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -16,7 +17,7 @@ public class TestBase {
     @BeforeClass
     public void setUp() throws InterruptedException {
         app.init();
-        app.login("lyubov.yapparova@gmail.com", "holopenio11");
+        app.session().login("lyubov.yapparova@gmail.com", "holopenio21");
 
     }
 
