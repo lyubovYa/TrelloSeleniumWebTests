@@ -12,7 +12,7 @@ public class HeaderHelper extends HelperBase {
         click(By.xpath("//button[@data-test-id='header-create-board-button']"));
     }
 
-    public void returnOnHomePage() {
+    public void returnOnHomePageFromBoard() {
         waitForElement(By.cssSelector(".mod-list-add-button"), 30);
         click(By.cssSelector("[data-test-id='header-home-button']"));
     }
@@ -25,7 +25,12 @@ public class HeaderHelper extends HelperBase {
         click(By.xpath("//button[@data-test-id='header-member-menu-button']"));
     }
 
-    public void returnOnHomePage1() {
+    public void returnOnHomePageFromTeam() {
+        waitForElement(By.cssSelector(".tabbed-pane-header-content"), 30);
+        click(By.cssSelector("[data-test-id='header-home-button']"));
+    }
+
+    public void returnOnHomePage() {
         click(By.cssSelector("[data-test-id='header-home-button']"));
     }
 
@@ -40,11 +45,18 @@ public class HeaderHelper extends HelperBase {
     }
 
     public void clickOnShowMenu() throws InterruptedException {
-//        if (isElementPresent(By.cssSelector(".board-header-btn.mod-show-menu.js-show-sidebar"))) {
-//            click(By.cssSelector(".board-header-btn.mod-show-menu.js-show-sidebar"));
-//        }
-//        if (isElementPresentBy.cssSelector(".icon-sm.icon-overflow-menu-horizontal.board-header-btn-icon"))) {
-        click(By.cssSelector(".icon-sm.icon-overflow-menu-horizontal.board-header-btn-icon111"));
+        if (!isElementPresent(By.cssSelector(".board-menu-navigation-item-link.js-open-stickers"))) {
+            System.out.println("Sticker was not found");
+            click(By.cssSelector(".board-header-btn.mod-show-menu.js-show-sidebar"));
+            click(By.cssSelector(".board-menu-navigation-item-link.js-open-more"));
+        } else {
+//            System.out.println("Sticker was found");
+            click(By.cssSelector(".board-menu-navigation-item-link.js-open-more"));
+//            System.out.println("Sticker was found11");
+        }
+//        if (isElementPresent(By.cssSelector(".icon-sm.icon-overflow-menu-horizontal.board-header-btn-icon"))) {
+//            click(By.cssSelector(".icon-sm.icon-overflow-menu-horizontal.board-header-btn-icon111"));
+////        }
 //        }
     }
 

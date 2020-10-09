@@ -22,5 +22,7 @@ public class SessionHelper extends HelperBase {
         Thread.sleep(6000);
         typeByID("password", password);
         click(By.id("login-submit"));
+
+
     }
 }

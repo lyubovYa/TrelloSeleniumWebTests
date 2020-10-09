@@ -1,5 +1,6 @@
 package com.telRun.tests;
 
+import com.telRun.model.Board;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,9 +11,9 @@ public class BoardCreationTest extends TestBase{
         int before = app.board().getBoardsCount();
         app.header().clickOnPlusButton();
         app.header().selectCreateBoard();
-        app.board().fiiBoardForm("plans for today", "public");
+        app.board().fiiBoardForm(new Board().withBoardName("plans for today").withTeamVisibility("public"));
         app.board().confirmBoardCreation();
-        app.header().returnOnHomePage();
+        app.header().returnOnHomePageFromBoard();
         int after = app.board().getBoardsCount();
         System.out.println("was: " + before + " now:" + after);
         Assert.assertEquals(after, before+1);

@@ -1,22 +1,25 @@
 package com.telRun.fw;
 
+import com.telRun.model.Board;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class BoardHelper extends HelperBase {
     public BoardHelper(WebDriver wd) {
         super(wd);
     }
 
-    public void fiiBoardForm(String boardName, String teamViseble) throws InterruptedException {
-        typeByXPATH("//input[@data-test-id='create-board-title-input']", boardName);
+    public void fiiBoardForm(Board board) throws InterruptedException {
+        typeByXPATH("//input[@data-test-id='create-board-title-input']", board.getBoardName());
         click(By.cssSelector(".W6rMLOx8U0MrPx"));
         click(By.cssSelector("._1uK2vQ_aMRS2NU"));
         //if(isElementPresent())
         //public or private
         click(By.cssSelector("._1Lkx3EjS3wCrs7"));
-        click(By.xpath("//*[@name='" + teamViseble + "']/../.."));
+        click(By.xpath("//*[@name='" + board.getTeamVisibility() + "']/../.."));
         //confirm public
         if (isElementPresent(By.cssSelector(".X6LMWvod566P68"))) {
             click(By.cssSelector(".X6LMWvod566P68 button"));
@@ -60,8 +63,11 @@ public class BoardHelper extends HelperBase {
     }
 
     public void clickOnBackButton() throws InterruptedException {
-        if (isElementPresent(By.cssSelector(".board-menu-header-back-button.icon-lg.icon-back.js-pop-widget-view"))) {
+        Thread.sleep(1000);
+        try {
             click(By.cssSelector(".board-menu-header-back-button.icon-lg.icon-back.js-pop-widget-view"));
+        } catch (Exception e){
+            System.out.println("Back button not found");
         }
 
     }
@@ -71,9 +77,12 @@ public class BoardHelper extends HelperBase {
 
     }
 
-    public void renameBoard() {
+    public void renameBoard(Board board) throws InterruptedException {
+        Thread.sleep(2000);
         click(By.cssSelector(".js-rename-board"));
-        wd.findElement(By.cssSelector("js-board-name-input")).clear();
-        wd.findElement(By.cssSelector("js-board-name-input")).sendKeys("rrrr" + Keys.ENTER);
+        //wd.findElement(By.cssSelector(".js-board-name-input")).click();
+//        wd.findElement(By.cssSelector(".js-board-name-input")).clear();
+        wd.findElement(By.cssSelector(".js-board-name-input"))
+                .sendKeys(board.getBoardName()  + Keys.ENTER);
     }
 }

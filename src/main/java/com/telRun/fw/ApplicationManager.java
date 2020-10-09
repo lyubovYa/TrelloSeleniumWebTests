@@ -11,28 +11,36 @@ public class ApplicationManager {
     SessionHelper session;
     BoardHelper board;
     HeaderHelper header;
+    HelperBase helper;
+    TeamHelper team;
 
     public void init() {
-        if ( wd == null ) {
+        if (wd == null) {
             wd = new ChromeDriver();
         }
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.manage().window().maximize();
         wd.navigate().to("http://trello.com/");
-        session= new SessionHelper(wd);
-        board = new BoardHelper(wd);
-        header = new HeaderHelper(wd);
+    }
+
+    public TeamHelper team() {
+        return new TeamHelper(wd);
     }
 
     public SessionHelper session() {
-        return session;
+        return new SessionHelper(wd);
     }
+
     public HeaderHelper header() {
-        return header;
+        return new HeaderHelper(wd);
+    }
+
+    public HelperBase helper() {
+        return new HelperBase(wd);
     }
 
     public BoardHelper board() {
-        return board;
+        return new BoardHelper(wd);
     }
 
     public void stop() {
