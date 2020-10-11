@@ -14,11 +14,33 @@ dependencies {
     implementation 'org.testng:testng:7.1.0'
     implementation 'org.openqa.selenium:selenium-rc:1.0-20081010.060147'
 }
-test(){
-    useTestNG()
+
+    task testRegression(type:Test){
+    useTestNG{
+        suites 'src/test/resources/testng-regression-withoutlogin.xml'
+    }
     if(project.hasProperty('browser')){
         systemProperty 'browser', "${browser}"
     }
+
+    task testBoards(type:Test){
+        useTestNG{
+            suites 'src/test/resources/testng-boards.xml'
+        }
+        if(project.hasProperty('browser')){
+            systemProperty 'browser', "${browser}"
+        }
+
+        task testTeams(type:Test){
+            useTestNG{
+                suites 'src/test/resources/testng-teams.xml'
+            }
+            if(project.hasProperty('browser')){
+                systemProperty 'browser', "${browser}"
+            }
+
+
 }
+
 
 

@@ -8,6 +8,7 @@ public class CloseBoardTest extends TestBase {
 
     @Test
     public void CloseBoardTest() throws InterruptedException {
+        Thread.sleep(20000);
         int before = getBoardsCount();
         app.header().waitForElement(By.cssSelector(".board-tile-details.is-badged"), 20);
         app.board().openBoard();

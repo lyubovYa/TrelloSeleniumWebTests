@@ -27,8 +27,8 @@ public class BoardHelper extends HelperBase {
     }
 
     public int getBoardsCount() throws InterruptedException {
-        Thread.sleep(2000);
-        int res = wd.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size() - 1;
+        Thread.sleep(10000);
+        int res = wd.findElements(By.xpath(".board-tile-details.is-badged")).size() - 1;
         return res;
     }
 
@@ -75,7 +75,8 @@ public class BoardHelper extends HelperBase {
 
     public void clickOnTheFirstBoard() throws InterruptedException {
         Thread.sleep(5000);
-        waitForElementAndClick(By.cssSelector("//*[@class='icon-lg icon-member']/../../..//li"),20);
+        //waitForElementAndClick(By.cssSelector("//*[@class='icon-lg icon-member']/../../..//li"),20);
+        waitForElementAndClick(By.cssSelector(".board-tile-details.is-badged"),20);
 
 
     }

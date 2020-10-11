@@ -10,6 +10,7 @@ public class BoardCreationTest extends TestBase{
     public void boardCreationTest() throws InterruptedException {
 //        app.header().returnOnHomePageByLink();
 //        app.board().selectBoardFromMenu();
+        Thread.sleep(10000);
         app.leftNav().returnToBoardsPage();
         int before = app.board().getBoardsCount();
         System.out.println("before is : " + before);

@@ -9,6 +9,6 @@ public class LeftNavigationMenuPage extends HelperBase {
     }
 
     public void returnToBoardsPage(){
-        waitForElementAndClick(By.cssSelector(".home-left-sidebar-container .icon-board"), 20);
+        waitForElementAndClick(By.cssSelector(".home-left-sidebar-container .icon-board"), 30);
     }
 }
