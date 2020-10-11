@@ -6,9 +6,8 @@ public class TeamDeleteTest extends TestBase {
 
     @Test
     public void deleteTeamTest() throws InterruptedException {
-        Thread.sleep(2000);
         app.header().returnOnHomePage();
-        Thread.sleep(6000);
+        Thread.sleep(3000);
         app.team().clickOnTeamButton();
         Thread.sleep(2000);
         app.team().clickOnSettings();

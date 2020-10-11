@@ -2,6 +2,8 @@ package com.telRun.fw;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,11 +15,22 @@ public class ApplicationManager {
     HeaderHelper header;
     HelperBase helper;
     TeamHelper team;
+    LeftNavigationMenuPage leftNav;
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
 
     public void init() {
-        if (wd == null) {
+        if(browser.equals(BrowserType.CHROME) ){
             wd = new ChromeDriver();
+        } else if(browser.equals(BrowserType.FIREFOX)){
+            wd = new FirefoxDriver();
         }
+//        if (wd == null) {
+//            wd = new ChromeDriver();
+//        }
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.manage().window().maximize();
         wd.navigate().to("http://trello.com/");
@@ -45,5 +58,9 @@ public class ApplicationManager {
 
     public void stop() {
         wd.quit();
+    }
+
+    public LeftNavigationMenuPage leftNav() {
+        return new LeftNavigationMenuPage(wd);
     }
 }

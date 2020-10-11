@@ -24,8 +24,13 @@ public class TeamHelper extends HelperBase {
         click(By.cssSelector("[data-test-id='home-team-settings-tab']"));
     }
 
-    public void clickOnTeamButton() {
-        click(By.cssSelector("[data-test-id='home-team-tab-name']"));
+    public void clickOnTeamButton() throws InterruptedException {
+        Thread.sleep(1000);
+        try {
+            waitForElementAndClick(By.cssSelector("[data-test-id='home-team-tab-name']"), 20);
+        } catch (org.openqa.selenium.StaleElementReferenceException ex)  {
+            waitForElementAndClick(By.cssSelector("[data-test-id='home-team-tab-name']"), 20);
+        }
     }
 
     public void selectIwillDoThisLaterButton() {
@@ -49,12 +54,15 @@ public class TeamHelper extends HelperBase {
         click(By.cssSelector("[data-test-id='header-create-team-button']"));
     }
 
-    public int getTeamCount() {
-
+    public int getTeamCount() throws InterruptedException {
+//        click(By.cssSelector("[data-test-id='header-home-button']"));
+        Thread.sleep(2000);
+        click(By.cssSelector("[data-test-id='header-home-button']"));
         return wd.findElements(By.cssSelector("[data-test-id='home-team-tab-name']")).size();
     }
 
-    public void renameTeam(Team team) {
+    public void renameTeam(Team team) throws InterruptedException {
+        Thread.sleep(2000);
         clickOnSettings();
         click(By.cssSelector(".css-t5emrf"));
         click(By.cssSelector("#displayName"));

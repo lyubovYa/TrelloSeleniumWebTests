@@ -17,9 +17,9 @@ public class LoginTrelloTest extends TestBase{
 
     @Test
     public void testLoginPositive() throws InterruptedException {
-//        if(app.header().isAvatarPresent()){
-//            app.header().logout();
-//        }
+        if(app.header().isAvatarPresent()){
+            app.header().logout();
+        }
         app.session().login("lyubov.yapparova@gmail.com", "holopenio21");
 
         Assert.assertTrue(app.header().isAvatarPresent());

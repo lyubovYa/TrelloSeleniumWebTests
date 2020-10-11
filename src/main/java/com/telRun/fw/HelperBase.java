@@ -35,4 +35,14 @@ public class HelperBase {
     public void waitForElement(By locator, int timeOut){
         new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
+    public void waitForElementAndClick(By locator, int timeOut){
+        new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+    }
+
+    public void waitForElementAndType(By locator, int timeOut, String text){
+        new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+    }
 }

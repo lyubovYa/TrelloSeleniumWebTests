@@ -26,7 +26,8 @@ public class BoardHelper extends HelperBase {
         }
     }
 
-    public int getBoardsCount() {
+    public int getBoardsCount() throws InterruptedException {
+        Thread.sleep(2000);
         int res = wd.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size() - 1;
         return res;
     }
@@ -72,17 +73,26 @@ public class BoardHelper extends HelperBase {
 
     }
 
-    public void clickOnTheFirstBoard() {
-        click(By.xpath("//*[@class='icon-lg icon-member']/../../..//li"));
+    public void clickOnTheFirstBoard() throws InterruptedException {
+        Thread.sleep(5000);
+        waitForElementAndClick(By.cssSelector("//*[@class='icon-lg icon-member']/../../..//li"),20);
+
 
     }
 
     public void renameBoard(Board board) throws InterruptedException {
-        Thread.sleep(2000);
-        click(By.cssSelector(".js-rename-board"));
+        waitForElementAndClick(By.cssSelector(".js-rename-board"), 20);
         //wd.findElement(By.cssSelector(".js-board-name-input")).click();
 //        wd.findElement(By.cssSelector(".js-board-name-input")).clear();
         wd.findElement(By.cssSelector(".js-board-name-input"))
-                .sendKeys(board.getBoardName()  + Keys.ENTER);
+                .sendKeys(board.getBoardName() + System.currentTimeMillis() + Keys.ENTER);
+    }
+
+    public void selectBoardFromMenu() throws InterruptedException {
+//        waitForElementAndClick(By.cssSelector("[data-test-id='home-link']"), 20);
+//        System.out.println("I am on the home page :) Pushing Board button");
+        Thread.sleep(5000);
+        waitForElementAndClick(By.cssSelector("._1hc34_9rc6xcjf.AqhrxyGOPcyvoq"), 20);
+        System.out.println("Pushed board button");
     }
 }

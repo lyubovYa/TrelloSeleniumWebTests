@@ -30,10 +30,15 @@ public class HeaderHelper extends HelperBase {
         click(By.cssSelector("[data-test-id='header-home-button']"));
     }
 
-    public void returnOnHomePage() {
-        click(By.cssSelector("[data-test-id='header-home-button']"));
+    public void returnOnHomePage() throws InterruptedException {
+        waitForElementAndClick(By.cssSelector("[data-test-id='header-home-button']"),20);
+        System.out.println("I am on the home page :)");
     }
 
+    public void returnOnHomePageByLink() throws InterruptedException {
+        waitForElementAndClick(By.cssSelector("[data-test-id='home-link']"),20);
+        System.out.println("I am on the home page from link :)");
+    }
 
     public boolean isAvatarPresent() throws InterruptedException {
         Thread.sleep(6000);
