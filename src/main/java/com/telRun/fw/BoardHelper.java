@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class BoardHelper extends HelperBase {
     public BoardHelper(WebDriver wd) {
         super(wd);
@@ -19,7 +17,7 @@ public class BoardHelper extends HelperBase {
         //if(isElementPresent())
         //public or private
         click(By.cssSelector("._1Lkx3EjS3wCrs7"));
-        click(By.xpath("//*[@name='" + board.getTeamVisibility() + "']/../.."));
+        click(By.xpath("//*[@name='" + board.getBoardVisibility() + "']/../.."));
         //confirm public
         if (isElementPresent(By.cssSelector(".X6LMWvod566P68"))) {
             click(By.cssSelector(".X6LMWvod566P68 button"));
@@ -28,7 +26,7 @@ public class BoardHelper extends HelperBase {
 
     public int getBoardsCount() throws InterruptedException {
         Thread.sleep(10000);
-        int res = wd.findElements(By.xpath(".board-tile-details.is-badged")).size() - 1;
+        int res = wd.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size() - 1;
         return res;
     }
 
@@ -75,8 +73,8 @@ public class BoardHelper extends HelperBase {
 
     public void clickOnTheFirstBoard() throws InterruptedException {
         Thread.sleep(5000);
-        //waitForElementAndClick(By.cssSelector("//*[@class='icon-lg icon-member']/../../..//li"),20);
-        waitForElementAndClick(By.cssSelector(".board-tile-details.is-badged"),20);
+        waitForElementAndClick(By.xpath("//*[@class='icon-lg icon-member']/../../..//li"),20);
+        //waitForElementAndClick(By.cssSelector(".board-tile-details.is-badged"),20);
 
 
     }
