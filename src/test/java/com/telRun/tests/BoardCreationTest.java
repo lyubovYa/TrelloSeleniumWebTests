@@ -23,18 +23,18 @@ public class BoardCreationTest extends TestBase{
 
     }
 
-//   @DataProvider
-//   public Iterator<Object[]>validBoardsFromCSV() throws IOException {
-//       List<Object[]> list = new ArrayList<>();
-//       BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/boards1/csv")));
-//       String line = reader.readLine();
-//       while(line != null){
-//           String [] split = line.split(",");
-//           list.add(new Object[]{new Board().withBoardName(split[0]).getBoardVisibility(split[1])});
-//           line = reader.readLine();
-//       }
-//    return list.iterator();
-//   }
+   @DataProvider
+   public Iterator<Object[]>validBoardsFromCSV() throws IOException {
+       List<Object[]> list = new ArrayList<>();
+       BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/boards1/csv")));
+       String line = reader.readLine();
+       while(line != null){
+           String [] split = line.split(",");
+           list.add(new Object[]{new Board().withBoardName(split[0]).withBoardVisibility(split[1])});
+           line = reader.readLine();
+       }
+    return list.iterator();
+   }
 
 
     @Test(dataProvider =  "validBoards")
@@ -50,6 +50,32 @@ public class BoardCreationTest extends TestBase{
         Board board = new Board()
                 .withBoardName(boardName)
                 .withBoardVisibility(boardVisibility);
+        app.board().confirmBoardCreation();
+        app.header().returnOnHomePageFromBoard();
+        app.board().fiiBoardForm(board);
+        app.header().returnOnHomePageFromBoard();
+//        app.header().returnOnHomePage();
+//        app.board().selectBoardFromMenu();
+        app.leftNav().returnToBoardsPage();
+        int after = app.board().getBoardsCount();
+        System.out.println("was: " + before + " now:" + after);
+        Assert.assertEquals(after, before+1);
+        //personal boards count before, after
+    }
+
+    @Test(dataProvider =  "validBoardsFromCSV")
+    public void boardCreationTestFromCSV(Board board) throws InterruptedException {
+//        app.header().returnOnHomePageByLink();
+//        app.board().selectBoardFromMenu();
+        Thread.sleep(10000);
+        app.leftNav().returnToBoardsPage();
+        int before = app.board().getBoardsCount();
+        System.out.println("before is : " + before);
+        app.header().clickOnPlusButton();
+        app.header().selectCreateBoard();
+//        Board board = new Board()
+//                .withBoardName(boardName)
+//                .withBoardVisibility(boardVisibility);
         app.board().confirmBoardCreation();
         app.header().returnOnHomePageFromBoard();
         app.board().fiiBoardForm(board);
