@@ -11,33 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class BoardCreationTest extends TestBase{
-    @DataProvider
-    public Iterator<Object[]>validBoards(){
-        List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{"1DataProboard}", "public"});
-        list.add(new Object[]{"3DataProboard}", "public"});
-        list.add(new Object[]{"1Data8796546}", "public"});
-        list.add(new Object[]{"5DataProboard}", "public"});
 
-        return list.iterator();
-
-    }
-
-   @DataProvider
-   public Iterator<Object[]>validBoardsFromCSV() throws IOException {
-       List<Object[]> list = new ArrayList<>();
-       BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/boards1/csv")));
-       String line = reader.readLine();
-       while(line != null){
-           String [] split = line.split(",");
-           list.add(new Object[]{new Board().withBoardName(split[0]).withBoardVisibility(split[1])});
-           line = reader.readLine();
-       }
-    return list.iterator();
-   }
-
-
-    @Test(dataProvider =  "validBoards")
+    @Test(dataProvider =  "validBoards", dataProviderClass = DataProviders.class)
     public void boardCreationTestFromDataProvider(String boardName, String boardVisibility) throws InterruptedException {
 //        app.header().returnOnHomePageByLink();
 //        app.board().selectBoardFromMenu();
@@ -63,7 +38,7 @@ public class BoardCreationTest extends TestBase{
         //personal boards count before, after
     }
 
-    @Test(dataProvider =  "validBoardsFromCSV")
+    @Test(dataProvider =  "validBoardsFromCSV", dataProviderClass = DataProviders.class)
     public void boardCreationTestFromCSV(Board board) throws InterruptedException {
 //        app.header().returnOnHomePageByLink();
 //        app.board().selectBoardFromMenu();
