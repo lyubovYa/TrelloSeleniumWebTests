@@ -16,7 +16,8 @@ public class ApplicationManager {
     HelperBase helper;
     TeamHelper team;
     LeftNavigationMenuPage leftNav;
-    private String browser;
+    public String browser;
+    ProfileHelper profile;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -38,6 +39,10 @@ public class ApplicationManager {
 
     public TeamHelper team() {
         return new TeamHelper(wd);
+    }
+
+    public ProfileHelper profile() {
+        return new ProfileHelper(wd);
     }
 
     public SessionHelper session() {

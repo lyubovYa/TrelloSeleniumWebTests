@@ -69,4 +69,8 @@ public class HeaderHelper extends HelperBase {
         clickOnAvatar();
         clickLogOut();
     }
+
+    public void openProfile() {
+        click(By.cssSelector("[data-test-id='header-member-menu-profile']"));
+    }
 }

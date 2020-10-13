@@ -94,4 +94,22 @@ public class BoardHelper extends HelperBase {
         waitForElementAndClick(By.cssSelector("._1hc34_9rc6xcjf.AqhrxyGOPcyvoq"), 20);
         System.out.println("Pushed board button");
     }
+
+    public void addList(String xpathLocator, String text) {
+        click(By.cssSelector(".placeholder"));
+        typeByXPATH(xpathLocator, text);
+        click(By.cssSelector(".primary.mod-list-add-button.js-save-edit"));
+
+    }
+
+    public void addAnotherList(String xpathLocator, String text) {
+        typeByXPATH(xpathLocator, text);
+        click(By.cssSelector(".primary.mod-list-add-button.js-save-edit"));
+    }
+
+    public void addCard(String cssLocator, String text) {
+        click(By.cssSelector(".js-add-a-card"));
+        typeByXPATH(cssLocator, text);
+        click(By.cssSelector(".primary.confirm.mod-compact.js-add-card"));
+    }
 }
