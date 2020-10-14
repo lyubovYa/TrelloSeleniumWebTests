@@ -4,6 +4,8 @@ import com.telRun.model.Board;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class BoardHelper extends HelperBase {
     public BoardHelper(WebDriver wd) {
@@ -111,5 +113,10 @@ public class BoardHelper extends HelperBase {
         click(By.cssSelector(".js-add-a-card"));
         typeByXPATH(cssLocator, text);
         click(By.cssSelector(".primary.confirm.mod-compact.js-add-card"));
+    }
+
+    public void moveList() {
+        new Actions(wd).clickAndHold(wd.findElement(By.cssSelector(".list-card.js-member-droppable.ui-droppable")))
+                .moveToElement(wd.findElement(By.cssSelector("[aria-label='my favorite nuts']"))).release().perform();
     }
 }

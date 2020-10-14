@@ -11,5 +11,7 @@ public class UsersProfileModificationTests extends TestBase {
         app.profile().goToAtlassianAccount();
         app.profile().switchToAtlassianAccWindow();
         app.profile().changeAvatar();
+
+
     }
 }
