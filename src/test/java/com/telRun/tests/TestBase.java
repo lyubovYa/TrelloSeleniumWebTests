@@ -35,11 +35,14 @@ public class TestBase {
         logger.info("stop test");
     }
 
+    @AfterSuite(enabled = true)
+    public void tearDown(){
+        app.stop();
+    }
+
 
 //    @AfterSuite(enabled = true) public void tearDown(){
 //        app.stop();
 //
 //    }
-
-
 }

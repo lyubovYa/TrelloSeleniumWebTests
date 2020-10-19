@@ -38,11 +38,12 @@ public class ProfileHelper extends HelperBase {
 
     public void changeAvatar() throws InterruptedException {
         takeScreenshot();
+
         new Actions(wd).moveToElement( wd.findElement(By.cssSelector("[data-test-selector='profile-avatar']"))).click().perform();
         click(By.xpath("//*[@id='uid18']/span[1]"));
-        click(By.cssSelector(""));
         uploadFile(By.xpath("//*[@id='image-input']"), new File("D:/telran/GitHub/TrelloSeleniumWebTests/src/test/resources/smallCat.png"));
         click(By.xpath("//button[@class='css-1l4j2co']"));
+        click(By.xpath("//button[@class='css-18u3ks8']"));
         Thread.sleep(3000);
         takeScreenshot();
 

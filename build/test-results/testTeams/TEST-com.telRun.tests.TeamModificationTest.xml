@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.telRun.tests.TeamModificationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-11T20:06:38" hostname="DESKTOP-DRR43GT" time="7.083">
+  <properties/>
+  <testcase name="teamModifyTest" classname="com.telRun.tests.TeamModificationTest" time="7.083"/>
+  <system-out><![CDATA[I am on the home page :)
+I am on the home page :)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

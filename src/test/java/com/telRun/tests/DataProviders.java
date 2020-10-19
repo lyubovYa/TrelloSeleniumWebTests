@@ -27,7 +27,7 @@ public class DataProviders {
     @DataProvider
     public Iterator<Object[]>validBoardsFromCSV() throws IOException {
         List<Object[]> list = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/boards1/csv")));
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/boards1.csv")));
         String line = reader.readLine();
         while(line != null){
             String [] split = line.split(",");

@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 public class UsersProfileModificationTests extends TestBase {
 
     @Test
-    public void changeAvatarForUser(){
+    public void changeAvatarForUser() throws InterruptedException {
+        Thread.sleep(3000);
         app.header().clickOnAvatar();
         app.header().openProfile();
         app.profile().goToAtlassianAccount();

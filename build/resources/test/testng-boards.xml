@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="RegressionTestWithoutLoginBoard" verbose="1" >
+    <test name="RegressionBoard" >
+        <classes>
+            <class name="com.telRun.tests.BoardCreationTest" />
+            <class name="com.telRun.tests.BoardModificationTests" />
+            <class name="com.telRun.tests.CloseBoardTest" />
+        </classes>
+    </test>
+</suite>

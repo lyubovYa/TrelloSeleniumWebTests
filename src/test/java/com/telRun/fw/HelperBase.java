@@ -59,9 +59,12 @@ public class HelperBase {
     }
 
     public void waitForElementAndType(By locator, int timeOut, String text){
-        new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        if(text != null) {
+            new WebDriverWait(wd, timeOut).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+            wd.findElement(locator).clear();
+            wd.findElement(locator).sendKeys(text);
+        }
+
     }
 
     public void takeScreenshot() {

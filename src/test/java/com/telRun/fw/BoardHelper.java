@@ -12,7 +12,7 @@ public class BoardHelper extends HelperBase {
         super(wd);
     }
 
-    public void fiiBoardForm(Board board) throws InterruptedException {
+    public void fillBoardForm(Board board) throws InterruptedException {
         typeByXPATH("//input[@data-test-id='create-board-title-input']", board.getBoardName());
         click(By.cssSelector(".W6rMLOx8U0MrPx"));
         click(By.cssSelector("._1uK2vQ_aMRS2NU"));
